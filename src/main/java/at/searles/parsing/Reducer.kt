@@ -1,7 +1,7 @@
 package at.searles.parsing
 
 import at.searles.parsing.combinators.*
-import at.searles.parsing.combinators.ext.ReducerPlus
+import at.searles.parsing.combinators.ext.ReducerRepN
 import at.searles.parsing.printing.PartialTree
 import at.searles.parsing.ref.RefReducer
 
@@ -41,7 +41,7 @@ interface Reducer<T, U>: CanRecognize {
         return ReducerOrReducer(listOf(this, other), listOf(this, other))
     }
 
-    infix fun orSwapOnPrint(other: Reducer<T, U>): Reducer<T, U> {
+    infix fun orPrintSwap(other: Reducer<T, U>): Reducer<T, U> {
         return ReducerOrReducer(listOf(this, other), listOf(other, this))
     }
 
@@ -61,11 +61,11 @@ interface Reducer<T, U>: CanRecognize {
         }
 
         fun <T> Reducer<T, T>.rep1(): Reducer<T, T> {
-            return ReducerPlus(this, 1)
+            return ReducerRepN(this, 1)
         }
 
         fun <T> Reducer<T, T>.rep(min: Int): Reducer<T, T> {
-            return ReducerPlus(this, min)
+            return ReducerRepN(this, min)
         }
 
         infix fun <T> Reducer<T, T>.or(other: Recognizer): Reducer<T, T> {

@@ -9,14 +9,6 @@ import at.searles.parsing.printing.ConcreteSyntaxTree
  */
 class ParserOrParser<T>(private val parseOrder: List<Parser<T>>, private val printOrder: List<Parser<T>>) : Parser<T> {
 
-    override fun or(other: Parser<T>): Parser<T> {
-        return ParserOrParser(parseOrder + other, printOrder + other)
-    }
-
-    override fun orSwapOnPrint(other: Parser<T>): Parser<T> {
-        return ParserOrParser(parseOrder + other, listOf(other) + printOrder)
-    }
-
     override fun parse(stream: ParserStream): T? {
         for(choice in parseOrder) {
             stream.parse(choice)?.let {
@@ -45,6 +37,14 @@ class ParserOrParser<T>(private val parseOrder: List<Parser<T>>, private val pri
         }
 
         return null
+    }
+
+    override fun or(other: Parser<T>): Parser<T> {
+        return ParserOrParser(parseOrder + other, printOrder + other)
+    }
+
+    override fun orPrintSwap(other: Parser<T>): Parser<T> {
+        return ParserOrParser(parseOrder + other, listOf(other) + printOrder)
     }
 
     override fun <L, V> plus(fold: Fold<L, T, V>): Reducer<L, V> {

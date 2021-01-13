@@ -9,7 +9,7 @@ import java.util.*
 /**
  * Parser for repetitions
  */
-class ReducerRep<T>(private val parent: Reducer<T, T>) : Reducer<T, T>/*, Rep*/ {
+class ReducerRep<T>(private val parent: Reducer<T, T>) : Reducer<T, T> {
 
     override fun reduce(left: T, stream: ParserStream): T? {
         var item = left

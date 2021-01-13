@@ -3,11 +3,13 @@ package at.searles.parsing
 import at.searles.lexer.Lexer
 import at.searles.lexer.SkipTokenizer
 import at.searles.parsing.Reducer.Companion.opt
+import at.searles.parsing.Reducer.Companion.rep
 import at.searles.parsingtools.common.Init
 import at.searles.parsingtools.common.StringAppender
 import at.searles.parsingtools.common.ToString
 import at.searles.regexp.Text
 import org.junit.Assert
+import org.junit.Ignore
 import org.junit.Test
 
 class LazyParsingTest {
@@ -61,6 +63,25 @@ class LazyParsingTest {
         val parser = (a + (c + StringAppender).opt()) + c
 
         val stream = ParserStream.create("ac")
+
+        val ast = parser.parse(stream)
+
+        Assert.assertNotNull(ast)
+    }
+
+    @Ignore
+    @Test
+    fun testLazyRep() {
+        // a(a|b)*b
+        val lexer = Lexer()
+        val tokenizer = SkipTokenizer(lexer)
+
+        val a = Parser.fromRegex(Text("a"), tokenizer, ToString)
+        val b = Parser.fromRegex(Text("b"), tokenizer, ToString)
+
+        val parser = a + ((a or b) + StringAppender).rep() + b
+
+        val stream = ParserStream.create("ab")
 
         val ast = parser.parse(stream)
 

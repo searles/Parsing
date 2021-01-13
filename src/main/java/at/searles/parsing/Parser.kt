@@ -69,7 +69,7 @@ interface Parser<T>: CanRecognize {
         return ParserOrParser(listOf(this, other), listOf(this, other))
     }
 
-    infix fun orSwapOnPrint(other: Parser<T>): Parser<T> {
+    infix fun orPrintSwap(other: Parser<T>): Parser<T> {
         return ParserOrParser(listOf(this, other), listOf(other, this))
     }
 
@@ -124,7 +124,7 @@ interface Parser<T>: CanRecognize {
         }
 
         fun <T> Parser<List<T>>.orEmpty(): Parser<List<T>> {
-            return this orSwapOnPrint EmptyListCreator()
+            return this orPrintSwap EmptyListCreator()
         }
     }
 }

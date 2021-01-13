@@ -10,7 +10,7 @@ class ReducerOrReducer<T, U>(private val parseOrder: List<Reducer<T, U>>, privat
         return ReducerOrReducer(parseOrder + other, printOrder + other)
     }
 
-    override fun orSwapOnPrint(other: Reducer<T, U>): Reducer<T, U> {
+    override fun orPrintSwap(other: Reducer<T, U>): Reducer<T, U> {
         return ReducerOrReducer(parseOrder + other, listOf(other) + printOrder)
     }
 
