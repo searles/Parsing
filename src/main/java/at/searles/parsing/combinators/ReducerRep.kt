@@ -1,6 +1,7 @@
 package at.searles.parsing.combinators
 
 import at.searles.parsing.ParserStream
+import at.searles.parsing.Recognizer
 import at.searles.parsing.Reducer
 import at.searles.parsing.printing.ConcreteSyntaxTree
 import at.searles.parsing.printing.PartialTree

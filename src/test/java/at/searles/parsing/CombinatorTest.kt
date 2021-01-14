@@ -28,12 +28,12 @@ class CombinatorTest {
             return left + right
         }
 
-        override fun leftInverse(result: String): String? {
-            return if (result.isNotEmpty()) result.substring(0, result.length - 1) else null
+        override fun leftInverse(item: String): String? {
+            return if (item.isNotEmpty()) item.substring(0, item.length - 1) else null
         }
 
-        override fun rightInverse(result: String): String? {
-            return if (result.isNotEmpty()) result.substring(result.length - 1) else null
+        override fun rightInverse(item: String): String? {
+            return if (item.isNotEmpty()) item.substring(item.length - 1) else null
         }
 
         override fun toString(): String {

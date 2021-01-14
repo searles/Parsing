@@ -258,12 +258,12 @@ class ParserAndPrinterTest {
                             return left.app(right)
                         }
 
-                        override fun leftInverse(result: Expr): Expr? {
-                            return (result as? App)?.left
+                        override fun leftInverse(item: Expr): Expr? {
+                            return (item as? App)?.left
                         }
 
-                        override fun rightInverse(result: Expr): Expr? {
-                            return (result as? App)?.right
+                        override fun rightInverse(item: Expr): Expr? {
+                            return (item as? App)?.right
                         }
                     }
             )
@@ -294,12 +294,12 @@ class ParserAndPrinterTest {
                             return left.app(right)
                         }
 
-                        override fun leftInverse(result: Expr): Expr? {
-                            return (result as? App)?.left
+                        override fun leftInverse(item: Expr): Expr? {
+                            return (item as? App)?.left
                         }
 
-                        override fun rightInverse(result: Expr): Expr? {
-                            return (result as? App)?.right
+                        override fun rightInverse(item: Expr): Expr? {
+                            return (item as? App)?.right
                         }
                     })
 

@@ -3,11 +3,11 @@ package at.searles.parsing
 interface Fold<T, U, V> {
     fun apply(stream: ParserStream, left: T, right: U): V
 
-    fun leftInverse(result: V): T? {
+    fun leftInverse(item: V): T? {
         return null
     }
 
-    fun rightInverse(result: V): U? {
+    fun rightInverse(item: V): U? {
         return null
     }
 
@@ -30,12 +30,12 @@ interface Fold<T, U, V> {
                     return fn(left, right)
                 }
 
-                override fun leftInverse(result: V): T? {
-                    return leftFn(result)
+                override fun leftInverse(item: V): T? {
+                    return leftFn(item)
                 }
 
-                override fun rightInverse(result: V): U? {
-                    return rightFn(result)
+                override fun rightInverse(item: V): U? {
+                    return rightFn(item)
                 }
 
                 override fun toString(): String {
@@ -50,12 +50,12 @@ interface Fold<T, U, V> {
                     return fn(stream.createTrace(), left, right)
                 }
 
-                override fun leftInverse(result: V): T? {
-                    return leftFn(result)
+                override fun leftInverse(item: V): T? {
+                    return leftFn(item)
                 }
 
-                override fun rightInverse(result: V): U? {
-                    return rightFn(result)
+                override fun rightInverse(item: V): U? {
+                    return rightFn(item)
                 }
 
                 override fun toString(): String {

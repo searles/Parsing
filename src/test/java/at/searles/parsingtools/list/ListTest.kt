@@ -40,17 +40,17 @@ class ListTest {
             return BacktrackingList.create(left).pushBack(right)
         }
 
-        override fun leftInverse(result: List<Any>): List<Any>? {
-            return if (rightInverse(result) == null) {
+        override fun leftInverse(item: List<Any>): List<Any>? {
+            return if (rightInverse(item) == null) {
                 null
-            } else result.subList(0, result.size - 1)
+            } else item.subList(0, item.size - 1)
 
         }
 
-        override fun rightInverse(result: List<Any>): Any? {
-            return if (result.isEmpty()) {
+        override fun rightInverse(item: List<Any>): Any? {
+            return if (item.isEmpty()) {
                 null
-            } else result[result.size - 1]
+            } else item[item.size - 1]
 
         }
     }

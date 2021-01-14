@@ -8,12 +8,12 @@ class SwappedPairCreator<T, U> : Fold<T, U, Pair<U, T>> {
         return Pair(right, left)
     }
 
-    override fun leftInverse(result: Pair<U, T>): T? {
-        return result.second
+    override fun leftInverse(item: Pair<U, T>): T? {
+        return item.second
     }
 
-    override fun rightInverse(result: Pair<U, T>): U? {
-        return result.first
+    override fun rightInverse(item: Pair<U, T>): U? {
+        return item.first
     }
 
     override fun toString(): String {

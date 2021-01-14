@@ -11,22 +11,22 @@ class CodePointAppender : Fold<String, Int, String> {
         return left + String(Character.toChars(right))
     }
 
-    override fun leftInverse(result: String): String? {
-        if (result.isEmpty()) {
+    override fun leftInverse(item: String): String? {
+        if (item.isEmpty()) {
             return null
         }
 
-        return if (Character.isHighSurrogate(result[result.length - 1])) {
-            result.substring(0, result.length - 2)
+        return if (Character.isHighSurrogate(item[item.length - 1])) {
+            item.substring(0, item.length - 2)
         } else {
-            result.substring(0, result.length - 1)
+            item.substring(0, item.length - 1)
         }
     }
 
-    override fun rightInverse(result: String): Int? {
-        return if (result.isEmpty()) {
+    override fun rightInverse(item: String): Int? {
+        return if (item.isEmpty()) {
             null
-        } else result.codePointAt(result.length - 1)
+        } else item.codePointAt(item.length - 1)
 
     }
 

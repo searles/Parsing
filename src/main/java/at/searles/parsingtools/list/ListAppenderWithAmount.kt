@@ -33,24 +33,24 @@ class ListAppenderWithAmount<T>(private val minSize: Int = 0) : Fold<List<T>, Pa
         return min(l.size - minSize, countSameAtEnd(l))
     }
 
-    override fun leftInverse(result: List<T>): List<T>? {
-        val count = countSameAtEndKeepMin(result)
+    override fun leftInverse(item: List<T>): List<T>? {
+        val count = countSameAtEndKeepMin(item)
 
         if(count <= 0) {
             return null
         }
 
-        return result.subList(0, result.size - count)
+        return item.subList(0, item.size - count)
     }
 
-    override fun rightInverse(result: List<T>): Pair<T, Int>? {
-        val count = countSameAtEndKeepMin(result)
+    override fun rightInverse(item: List<T>): Pair<T, Int>? {
+        val count = countSameAtEndKeepMin(item)
 
         if(count <= 0) {
             return null
         }
 
-        return Pair(result.last(), count)
+        return Pair(item.last(), count)
     }
 
     override fun toString(): String {

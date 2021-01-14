@@ -178,12 +178,12 @@ class FormatterTest {
                 return AppNode(stream.createTrace(), left, right)
             }
 
-            override fun leftInverse(result: Node): Node? {
-                return if (result is AppNode) result.left else null
+            override fun leftInverse(item: Node): Node? {
+                return if (item is AppNode) item.left else null
             }
 
-            override fun rightInverse(result: Node): Node? {
-                return if (result is AppNode) result.right else null
+            override fun rightInverse(item: Node): Node? {
+                return if (item is AppNode) item.right else null
             }
         }
 

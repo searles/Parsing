@@ -71,11 +71,11 @@ fun main() {
         override fun apply(stream: ParserStream, left: AstNode, right: AstNode): AstNode =
                 OpNode(Op.Mul, left, right)
 
-        override fun leftInverse(result: AstNode): AstNode? =
-                if (result is OpNode && result.op == Op.Mul) result.args[0] else null
+        override fun leftInverse(item: AstNode): AstNode? =
+                if (item is OpNode && item.op == Op.Mul) item.args[0] else null
 
-        override fun rightInverse(result: AstNode): AstNode? =
-                if (result is OpNode && result.op == Op.Mul) result.args[1] else null
+        override fun rightInverse(item: AstNode): AstNode? =
+                if (item is OpNode && item.op == Op.Mul) item.args[1] else null
     }
 
     val slash = Recognizer.fromString("/", lexer)
@@ -84,11 +84,11 @@ fun main() {
         override fun apply(stream: ParserStream, left: AstNode, right: AstNode): AstNode =
                 OpNode(Op.Div, left, right)
 
-        override fun leftInverse(result: AstNode): AstNode? =
-                if (result is OpNode && result.op == Op.Div) result.args[0] else null
+        override fun leftInverse(item: AstNode): AstNode? =
+                if (item is OpNode && item.op == Op.Div) item.args[0] else null
 
-        override fun rightInverse(result: AstNode): AstNode? =
-                if (result is OpNode && result.op == Op.Div) result.args[1] else null
+        override fun rightInverse(item: AstNode): AstNode? =
+                if (item is OpNode && item.op == Op.Div) item.args[1] else null
     }
 
     val product = (literal + ((times + literal).plus(multiply) or
@@ -102,22 +102,22 @@ fun main() {
         override fun apply(stream: ParserStream, left: AstNode, right: AstNode): AstNode =
                 OpNode(Op.Add, left, right)
 
-        override fun leftInverse(result: AstNode): AstNode? =
-                if (result is OpNode && result.op == Op.Add) result.args[0] else null
+        override fun leftInverse(item: AstNode): AstNode? =
+                if (item is OpNode && item.op == Op.Add) item.args[0] else null
 
-        override fun rightInverse(result: AstNode): AstNode? =
-                if (result is OpNode && result.op == Op.Add) result.args[1] else null
+        override fun rightInverse(item: AstNode): AstNode? =
+                if (item is OpNode && item.op == Op.Add) item.args[1] else null
     }
 
     val sub = object : Fold<AstNode, AstNode, AstNode> {
         override fun apply(stream: ParserStream, left: AstNode, right: AstNode): AstNode =
                 OpNode(Op.Sub, left, right)
 
-        override fun leftInverse(result: AstNode): AstNode? =
-                if (result is OpNode && result.op == Op.Sub) result.args[0] else null
+        override fun leftInverse(item: AstNode): AstNode? =
+                if (item is OpNode && item.op == Op.Sub) item.args[0] else null
 
-        override fun rightInverse(result: AstNode): AstNode? =
-                if (result is OpNode && result.op == Op.Sub) result.args[1] else null
+        override fun rightInverse(item: AstNode): AstNode? =
+                if (item is OpNode && item.op == Op.Sub) item.args[1] else null
     }
 
     sum.ref = product + (

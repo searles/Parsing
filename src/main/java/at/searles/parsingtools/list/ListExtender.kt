@@ -11,17 +11,17 @@ class ListExtender<A, C>(private val mapping: Mapping<A, C>): Fold<List<C>, List
         }
     }
 
-    override fun leftInverse(result: List<C>): List<C>? {
+    override fun leftInverse(item: List<C>): List<C>? {
         var isApplicable = false
-        val leftList = result.dropLastWhile { (mapping.left(it)?.also { isApplicable = true } != null) }
+        val leftList = item.dropLastWhile { (mapping.left(it)?.also { isApplicable = true } != null) }
 
         return if(isApplicable) leftList else null
     }
 
-    override fun rightInverse(result: List<C>): List<A>? {
+    override fun rightInverse(item: List<C>): List<A>? {
         val rightList = ArrayList<A>()
 
-        result.takeLastWhile { element ->
+        item.takeLastWhile { element ->
             mapping.left(element)?.also { rightList.add(it) } != null
         }
 

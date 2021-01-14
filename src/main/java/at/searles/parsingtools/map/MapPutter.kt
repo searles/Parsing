@@ -9,16 +9,16 @@ class MapPutter<K, V>(private val key: K) : Fold<Map<K, V>, V, Map<K, V>> {
         return left + (key to right)
     }
 
-    override fun leftInverse(result: Map<K, V>): Map<K, V>? {
-        if (!result.containsKey(key)) {
+    override fun leftInverse(item: Map<K, V>): Map<K, V>? {
+        if (!item.containsKey(key)) {
             return null
         }
 
-        return result - key
+        return item - key
     }
 
-    override fun rightInverse(result: Map<K, V>): V? {
-        return result[key]
+    override fun rightInverse(item: Map<K, V>): V? {
+        return item[key]
     }
 
     override fun toString(): String {

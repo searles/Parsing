@@ -13,17 +13,17 @@ class ListAppender<T>(private val minSize: Int = 0) : Fold<List<T>, T, List<T>> 
         return list.size <= minSize
     }
 
-    override fun leftInverse(result: List<T>): List<T>? {
-        return if (cannotInvert(result)) {
+    override fun leftInverse(item: List<T>): List<T>? {
+        return if (cannotInvert(item)) {
             null
-        } else result.subList(0, result.size - 1)
+        } else item.subList(0, item.size - 1)
 
     }
 
-    override fun rightInverse(result: List<T>): T? {
-        return if (cannotInvert(result)) {
+    override fun rightInverse(item: List<T>): T? {
+        return if (cannotInvert(item)) {
             null
-        } else result[result.size - 1]
+        } else item[item.size - 1]
     }
 
     override fun toString(): String {
